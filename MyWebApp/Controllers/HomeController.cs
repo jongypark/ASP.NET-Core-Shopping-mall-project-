@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyWebApp.Models;
+using MyWebApp.Models.ViewModels;
 
 namespace MyWebApp.Controllers
 {
@@ -19,7 +20,17 @@ namespace MyWebApp.Controllers
                 .Skip((currentPage - 1) * PageSize)
                 .Take(PageSize);
 
-            return View(result);
+            return View(
+                new ProductsListViewModel
+                {
+                    Products = result,
+                    PageInfo = new PageInfo
+                    {
+                        CurrentPage = currentPage,
+                        ItemsPerPage = PageSize,
+                        TotalItems = _repository.Products.Count()
+                    }
+                });
         }
     }
 }
