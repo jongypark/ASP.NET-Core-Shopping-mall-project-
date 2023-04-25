@@ -1,12 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyWebApp.Models;
 
 namespace MyWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly IMyDBRepository _repository;
+        public int PageSize = 2;
+
+        public HomeController(IMyDBRepository repository)
         {
-            return View();
+            _repository = repository;
+        }
+
+        public IActionResult Index(int currentPage = 1)
+        {
+            var result = _repository.Products.OrderBy(p => p.Id)
+                .Skip((currentPage - 1) * PageSize)
+                .Take(PageSize);
+
+            return View(result);
         }
     }
 }

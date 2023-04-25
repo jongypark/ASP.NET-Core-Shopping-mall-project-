@@ -1,0 +1,23 @@
+﻿<h1>환영합니다.</h1>
+
+@model IQueryable<Product>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>제품명</th>
+            <th>설명</th>
+            <th>단가</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model ?? Enumerable.Empty<Product>())
+        {
+            <tr>
+                <td>@p.Name</td>
+                <td>@p.Description</td>
+                <td>@p.Price.ToString("#,###")</td>
+            </tr>
+        }
+    </tbody>
+</table>
