@@ -1,0 +1,21 @@
+﻿@model IEnumerable<string>
+
+<div class="d-grid gap-2">
+    <h2>Default.cshtml</h2>
+    <a asp-action="Index" asp-controller="Home" asp-route-category="">전체</a>
+    
+    @foreach (string category in Model ?? Enumerable.Empty<string>())
+    {
+        @:&nbsp;
+        <a asp-action="Index" asp-controller="Home" asp-route-category="@category" asp-route-currentPage="1">
+            @if (category == ViewBag.CurrentCategory)
+            {
+                <b>@category</b>
+            }
+            else
+            {
+                @category
+            }
+        </a>
+    }
+</div>

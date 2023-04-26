@@ -24,6 +24,9 @@ namespace MyWebApp.Classes
         public PageInfo? PageModel { get; set; }
         public string? PageAction { get; set; }
 
+        [HtmlAttributeName(DictionaryAttributePrefix = "page-url-")]
+        public Dictionary<string, object> PageUrlValues { get; set; } = new Dictionary<string, object>();
+
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             if (ViewContext != null && PageModel != null)
@@ -34,9 +37,13 @@ namespace MyWebApp.Classes
                 for (int i = 1; i <= PageModel.TotalPages; i++)
                 {
                     TagBuilder tag = new TagBuilder("a");
-                    tag.Attributes["href"] = urlHelper.Action(PageAction, new { currentPage = i });
+                    TagBuilder button = new TagBuilder("button");
+                    PageUrlValues["currentPage"] = i;
+                    tag.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);
+                    tag.AddCssClass("button");
 
-                    tag.InnerHtml.Append(i.ToString());
+                    button.InnerHtml.Append(i.ToString());
+                    tag.InnerHtml.AppendHtml(button);
                     result.InnerHtml.AppendHtml(tag);
                 }
 

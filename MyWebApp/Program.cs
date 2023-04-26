@@ -11,11 +11,22 @@ builder.Services.AddDbContext<MyDbContext>(opts =>
 });
 
 builder.Services.AddScoped<IMyDBRepository, MyDBRepository>();
+builder.Services.AddRazorPages();
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
 
 var app = builder.Build();
 
 app.UseStaticFiles();
+app.UseSession();
+
+app.MapControllerRoute("categoryPage", "{category}/Page{currentPage:int}", new { Controller = "Home", action = "Index" });
+app.MapControllerRoute("page", "Page{currentPage:int}", new { Controller = "Home", action = "Index", currentPage = 1 });
+app.MapControllerRoute("category", "{category}", new { Controller = "Home", action = "Index", currentPage = 1 });
+app.MapControllerRoute("default", "Products/Page{currentPage}", new { Controller = "Home", action = "Index", currentPage = 1 });
+
 app.MapDefaultControllerRoute();
+app.MapRazorPages();
 
 MyData.InitData(app);
 

@@ -13,10 +13,11 @@ namespace MyWebApp.Controllers
         {
             _repository = repository;
         }
-
-        public IActionResult Index(int currentPage = 1)
+        public IActionResult Index(string? category, int currentPage = 1)
         {
-            var result = _repository.Products.OrderBy(p => p.Id)
+            var result = _repository.Products
+                .Where(p => p.Category == category || category == null)
+                .OrderBy(p => p.Id)
                 .Skip((currentPage - 1) * PageSize)
                 .Take(PageSize);
 
@@ -28,8 +29,9 @@ namespace MyWebApp.Controllers
                     {
                         CurrentPage = currentPage,
                         ItemsPerPage = PageSize,
-                        TotalItems = _repository.Products.Count()
-                    }
+                        TotalItems = category == null ? _repository.Products.Count() : _repository.Products.Where(p => p.Category == category).Count()
+                    },
+                    CurrentCategory = category,
                 });
         }
     }

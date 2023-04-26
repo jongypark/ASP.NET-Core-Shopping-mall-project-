@@ -1,0 +1,54 @@
+﻿@using MyWebApp.Classes
+@model ProductsListViewModel
+
+<style type="text/css">
+    .button{
+        margin-right:10px ;
+    }
+
+    table{
+        border: 1px solid gray;
+        border-collapse:collapse;
+        margin-bottom : 10px;
+    }
+
+    td, th {
+        padding : 10px;
+        border-bottom : 1px solid grey;
+    }
+
+    th{
+        background-color:gray;
+        color:white;
+    }
+
+</style>
+<h3>ProductList.cshtml</h3>
+<table>
+    <thead>
+        <tr>
+            <th>제품명</th>
+            <th>설명</th>
+            <th>단가</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model.Products ?? Enumerable.Empty<Product>())
+        {
+            <tr>
+                <td>@p.Name</td>
+                <td>@p.Description</td>
+                <td>@p.Price.ToString("#,###")</td>
+                <td>
+                    <form id="form_@p.Id" asp-page="/Cart" method="post">
+                        <input type="hidden" id="Product_@p.Id" name="ProductID" value="@p.Id" />
+                        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                        <button type="submit">장바구니 추가</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div page-model="@Model?.PageInfo" page-action="Index" page-url-category="@Model?.CurrentCategory!"></div>
