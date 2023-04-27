@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<string>
 
 <div class="d-grid gap-2">
-    <h2>Default.cshtml</h2>
-    <a asp-action="Index" asp-controller="Home" asp-route-category="">전체</a>
+    <h2>Category</h2>
+    <p><strong>Default.cshtml</strong></p>
+    <a asp-action="Index" asp-controller="Home" asp-route-category="">ALL</a>
     
     @foreach (string category in Model ?? Enumerable.Empty<string>())
     {

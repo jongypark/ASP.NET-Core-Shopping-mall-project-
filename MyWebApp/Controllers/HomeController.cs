@@ -7,7 +7,7 @@ namespace MyWebApp.Controllers
     public class HomeController : Controller
     {
         private readonly IMyDBRepository _repository;
-        public int PageSize = 2;
+        public int PageSize = 5;
 
         public HomeController(IMyDBRepository repository)
         {

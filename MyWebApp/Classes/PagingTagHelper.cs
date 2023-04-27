@@ -40,7 +40,7 @@ namespace MyWebApp.Classes
                     TagBuilder button = new TagBuilder("button");
                     PageUrlValues["currentPage"] = i;
                     tag.Attributes["href"] = urlHelper.Action(PageAction, PageUrlValues);
-                    tag.AddCssClass("button");
+                    tag.AddCssClass("button"+i+"");
 
                     button.InnerHtml.Append(i.ToString());
                     tag.InnerHtml.AppendHtml(button);

@@ -1,36 +1,9 @@
 ﻿@using MyWebApp.Classes
 @model ProductsListViewModel
 
-<style type="text/css">
-    .info{
-        float:right;
-        width:80%;
-    }
 
-    .button{
-        margin-right:10px ;
-    }
-
-    table{
-        width: 100%;
-        border: 1px solid gray;
-        border-collapse:collapse;
-        margin-bottom : 10px;
-    }
-
-    td, th {
-        padding : 10px;
-        border-bottom : 1px solid grey;
-        text-align:center;
-    }
-
-    th{
-        background-color:gray;
-        color:white;
-    }
-
-</style>
-<h3>ProductList.cshtml</h3>
+<h3>ProductList</h3>
+<strong><p>ProductList.cshtml</p></strong>
 <table>
     <thead>
         <tr>
@@ -48,7 +21,7 @@
                 <td>@p.Name</td>
                 <td>@p.Category</td>
                 <td>@p.Description</td>
-                <td>@p.Price.ToString("#,###")</td>
+                <td>@p.Price.ToString("N0")</td>
                 <td>
                     <form id="form_@p.Id" asp-page="/Cart" method="post">
                         <input type="hidden" id="Product_@p.Id" name="ProductID" value="@p.Id" />
@@ -60,4 +33,4 @@
         }
     </tbody>
 </table>
-<div page-model="@Model?.PageInfo" page-action="Index" page-url-category="@Model?.CurrentCategory!"></div>
+<div class="paging" page-model="@Model?.PageInfo" page-action="Index" page-url-category="@Model?.CurrentCategory!"></div>
