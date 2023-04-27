@@ -18,8 +18,9 @@
         padding:20px;
     }
 
-    .title{
-        box-shadow: 0px 3px 5px -2px grey;
+    .cart{
+        float:right;
+        width:15%;
     }
 
     .button {
@@ -36,6 +37,7 @@
         border-bottom: 1px solid gray;
         border-collapse: collapse;
         margin-bottom: 10px;
+        box-shadow: -1px 1px 3px 1px grey;
     }
 
     td, th {
@@ -64,6 +66,11 @@
         top: auto;
         left: 55%;
     }
+    .write{
+        position:absolute;
+        top: 30%;
+        left: 50%;
+    }
 
 </style>
 <html>
@@ -72,9 +79,8 @@
     <title>My Web Application</title>
 </head>
 <body>
-    <div>
+    <vc:cart-summary/><br />
         @RenderBody()
-    </div>
     <div class="category">
         <vc:navigation-menu />
     </div>

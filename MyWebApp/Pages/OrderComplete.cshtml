@@ -1,0 +1,10 @@
+﻿@page
+
+@model OrderCompleModel
+
+<h3>주문해 주셔서 감사합니다.</h3>
+
+<div>
+    <p>귀하의 주문번호 : @Model.OrderId</p>
+    <a class="btn btn-primary" asp-controller="Home" asp-action="Index">돌아가기</a>
+</div>

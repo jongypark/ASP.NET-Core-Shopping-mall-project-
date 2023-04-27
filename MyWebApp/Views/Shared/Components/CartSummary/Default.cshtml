@@ -1,0 +1,17 @@
+﻿@using MyWebApp.Classes
+@model Cart
+<div class="cart">
+    <p><strong>CartSummary.Default.cshtml</strong></p>
+    <div style="border:1px;">
+        @if (Model?.Items.Count() > 0)
+        {
+            <p>현재</p>
+            <span style="color:green;">
+                @Model?.Items.Sum(x => x.Quantity)&nbsp;개제품 총
+                @Model?.ComputeTotalValue().ToString("N0")&nbsp;원
+            </span>
+        }
+        &nbsp;
+        <a asp-page="/Cart" asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()">Cart</a>
+    </div>
+</div>

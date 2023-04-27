@@ -1,0 +1,13 @@
+﻿@model Order
+
+<h2>주문서 작성</h2>
+<div asp-validation-summary="All" style="color:red;"></div>
+<form asp-action="Checkout" method="post">
+    <h1>배송정보 입력</h1>
+    <label>이름</label>:<input asp-for="Name" /><br />
+    <label>전화번호</label>:<input asp-for="Phone" /><br />
+    <label>주소</label>:<input asp-for="Address" /><br />
+    <div>
+        <input type="submit" value="주문하기" />
+    </div>
+</form>

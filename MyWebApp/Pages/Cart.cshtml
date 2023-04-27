@@ -10,6 +10,7 @@
             <th>제품</th>
             <th>가격</th>
             <th>금액</th>
+            <th>삭제</th>
         </tr>
     </thead>
     <tbody>
@@ -21,6 +22,13 @@
                 <td>@item.Product.Price.ToString("c")</td>
                 <td>
                     @((item.Quantity * item.Product.Price).ToString("c"))
+                </td>
+                <td>
+                    <form asp-page-handler="Remove" method="post">
+                        <input type="hidden" name="ProductID" value="@item.Product.Id" />
+                        <input type="hidden" name="returnUrl" value="@Model?.ReturnUrl" />
+                        <button type="submit">삭제</button>
+                    </form>
                 </td>
             </tr>
         }
@@ -36,4 +44,5 @@
 </table>
 <div>
     <a href="@Model?.ReturnUrl">계속 쇼핑하기</a>
+    <a asp-controller="Order" asp-action="Checkout">주문하기</a>
 </div>
