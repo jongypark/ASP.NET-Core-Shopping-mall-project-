@@ -15,6 +15,42 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\PARKJY\Desktop\PJY\.NET\Core\MyWebApp\MyWebApp
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/PARKJY/Desktop/PJY/.NET/Core/MyWebApp/MyWebApp/Pages/Admin/BlazorRoute.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQmxhem9yUm91dGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/PARKJY/Desktop/PJY/.NET/Core/MyWebApp/MyWebApp/Pages/Admin/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRGV0YWlscy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/PARKJY/Desktop/PJY/.NET/Core/MyWebApp/MyWebApp/Pages/Admin/Editor.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRWRpdG9yLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/PARKJY/Desktop/PJY/.NET/Core/MyWebApp/MyWebApp/Pages/Admin/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWFpbkxheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/PARKJY/Desktop/PJY/.NET/Core/MyWebApp/MyWebApp/Pages/Admin/OrderList.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cT3JkZXJMaXN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/PARKJY/Desktop/PJY/.NET/Core/MyWebApp/MyWebApp/Pages/Admin/Orders.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cT3JkZXJzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/PARKJY/Desktop/PJY/.NET/Core/MyWebApp/MyWebApp/Pages/Admin/Products.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZHVjdHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/PARKJY/Desktop/PJY/.NET/Core/MyWebApp/MyWebApp/Pages/Admin/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cX0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/PARKJY/Desktop/PJY/.NET/Core/MyWebApp/MyWebApp/Pages/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/PARKJY/Desktop/PJY/.NET/Core/MyWebApp/MyWebApp/Pages/Cart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

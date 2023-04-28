@@ -12,7 +12,7 @@ using MyWebApp.Models;
 namespace MyWebApp.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20230427081525_Orders")]
+    [Migration("20230428025315_Orders")]
     partial class Orders
     {
         /// <inheritdoc />
@@ -62,6 +62,9 @@ namespace MyWebApp.Migrations
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsComplete")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()

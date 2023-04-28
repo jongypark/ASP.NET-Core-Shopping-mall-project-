@@ -1,0 +1,30 @@
+﻿@page "/admin/products/details/{id:int}"
+
+<h3>제품상세</h3>
+
+<ul>
+    <li>ID : @Product?.Id</li>
+    <li>제품명 : @Product?.Name</li>
+    <li>제품설명 : @Product?.Description</li>
+    <li>카테고리 : @Product?.Category</li>
+    <li>단가 : @Product?.Price.ToString("C")</li>
+</ul>
+
+<NavLink href="@EditUrl">수정하기</NavLink>
+<NavLink href="/admin/products">뒤로</NavLink>
+
+@code {
+    [Inject]
+    public IMyDBRepository? Repository { get; set; }
+
+    [Parameter]
+    public int Id { get; set; }
+    public Product? Product { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        Product = Repository?.Products.FirstOrDefault(p => p.Id == Id);
+    }
+
+    public string EditUrl => $"/admin/products/editor/{Product?.Id}";
+}

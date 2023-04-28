@@ -1,0 +1,58 @@
+﻿@page "/admin/products/editor/{id:int}"
+@page "/admin/products/create"
+
+@inherits OwningComponentBase<IMyDBRepository>
+
+<h3>Product @Title</h3>
+<EditForm Model="Product" OnValidSubmit="SaveProduct">
+    <DataAnnotationsValidator />
+
+    @if (Product.Id != 0)
+    {
+        <div>ID : <input disabled value="@Product.Id" /></div>
+    }
+
+    <div>Name : <InputText @bind-Value="Product.Name" /> <ValidationMessage For="@(() => Product.Name)" /></div>
+    <div>Description : <InputText @bind-Value="Product.Description" /> <ValidationMessage For="@(() => Product.Description)" /></div>
+    <div>Category : <InputText @bind-Value="Product.Category" /> <ValidationMessage For="@(() => Product.Category)" /></div>
+    <div>Price : <InputNumber @bind-Value="Product.Price" /> <ValidationMessage For="@(() => Product.Price)" /></div>
+    <div>
+        <button type="submit">저장</button>
+        <NavLink href="/admin/products">취소</NavLink>
+    </div>
+</EditForm>
+
+@code {
+    public IMyDBRepository Repository => Service;
+
+    [Inject]
+    public NavigationManager? NavManager { get; set; }
+
+    [Parameter]
+    public int Id { get; set; } = 0;
+    public Product Product { get; set; } = new Product();
+
+    protected override void OnParametersSet()
+    {
+        if (Id != 0)
+        {
+            Product = Repository.Products.FirstOrDefault(p => p.Id == Id) ?? new();
+        }
+    }
+
+    public void SaveProduct()
+    {
+        if (Id == 0)
+        {
+            Repository.CreateProduct(Product);
+        }
+        else
+        {
+            Repository.SaveProduct(Product);
+        }
+
+        NavManager?.NavigateTo("/admin/products");
+    }
+
+    public string Title => Id == 0 ? "추가" : "변경";
+}

@@ -18,6 +18,7 @@ builder.Services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<IMyDBRepository, MyDBRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddServerSideBlazor();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
@@ -32,6 +33,8 @@ app.MapControllerRoute("default", "Products/Page{currentPage}", new { Controller
 
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
+app.MapBlazorHub();
+app.MapFallbackToPage("/admin/{*catchall}", "/Admin/Index");
 
 MyData.InitData(app);
 

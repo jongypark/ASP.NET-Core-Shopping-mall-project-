@@ -1,0 +1,44 @@
+﻿<table>
+    <thead>
+        <tr><th colspan="3">@OrderTitle</th></tr>
+    </thead>
+    <tbody>
+        @if (Orders?.Count() > 0)
+        {
+            @foreach (Order o in Orders)
+            {
+                <tr>
+                    <td>@o.Name</td>
+                    <td>@o.Address</td>
+                    <th>제품</th>
+                    <th>수량</th>
+                    <td><button @onclick="@(e => OrderSelected.InvokeAsync(o.OrderID))">@ButtonTitle</button></td>
+                </tr>
+                @foreach (CartItems line in o.Items)
+                {
+                    <tr>
+                        <td colspan="2"></td>
+                        <td>@line.Product.Name</td>
+                        <td>@line.Quantity</td>
+                        <td></td>
+                    </tr>
+                }
+            }
+        }
+        else
+        {
+            <tr><td class="text-center">주문없음</td></tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public string OrderTitle { get; set; } = "주문내역";
+    [Parameter]
+    public string ButtonTitle { get; set; } = "주문처리";
+    [Parameter]
+    public IEnumerable<Order> Orders { get; set; } = Enumerable.Empty<Order>();
+    [Parameter]
+    public EventCallback<int> OrderSelected { get; set; }
+}

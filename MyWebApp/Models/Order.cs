@@ -19,5 +19,8 @@ namespace MyWebApp.Models
 
         [Required(ErrorMessage = "배송주소가 입력되지 않았습니다.")]
         public string? Address { get; set; }
+
+        [BindNever]
+        public bool IsComplete { get; set; }
     }
 }

@@ -1,0 +1,41 @@
+﻿@page "/admin/orders"
+
+@inherits OwningComponentBase<IOrderRepository>
+
+<OrderList OrderTitle="주문내역" Orders="UnCompleteOrders" ButtonTitle="주문처리" OrderSelected="CompleteOrder" />
+<OrderList OrderTitle="주문처리내역" Orders="CompletedOrders" ButtonTitle="초기화" OrderSelected="ResetOrder" />
+
+<button class="btn btn-info" @onclick="@(e => UpdateOrderList())">새로고침</button>
+
+@code {
+    public IOrderRepository Repository => Service;
+    public IEnumerable<Order> AllOrders { get; set; } = Enumerable.Empty<Order>();
+    public IEnumerable<Order> UnCompleteOrders { get; set; } = Enumerable.Empty<Order>();
+    public IEnumerable<Order> CompletedOrders { get; set; } = Enumerable.Empty<Order>();
+
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateOrderList();
+    }
+
+    public async Task UpdateOrderList()
+    {
+        AllOrders = await Repository.Orders.ToListAsync();
+        UnCompleteOrders = AllOrders.Where(o => !o.IsComplete);
+        CompletedOrders = AllOrders.Where(o => o.IsComplete);
+    }
+
+    public void CompleteOrder(int id) => UpdateOrder(id, true);
+    public void ResetOrder(int id) => UpdateOrder(id, false);
+
+    private void UpdateOrder(int id, bool shipValue)
+    {
+        Order? o = Repository.Orders.FirstOrDefault(o => o.OrderID == id);
+
+        if (o != null)
+        {
+            o.IsComplete = shipValue;
+            Repository.SaveOrder(o);
+        }
+    }
+}
